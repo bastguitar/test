@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commande Matériel</title>
+    <script>
+        function sendData() {
+            const inputText = document.getElementById('textInput').value;
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbySSPvcOUbp6Bx-AOLZrAh0pQZdqT40bns0XuzMqoFQ2A_rqKcCO8QQc-_DUyo8f2TTzg/exec'; // Remplacez par l'URL de votre application web
+
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'text=' + encodeURIComponent(inputText)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert("Données envoyées avec succès !");
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 20%;">
+        <input type="text" id="textInput" placeholder="Entrez votre texte ici" style="width: 300px; padding: 10px;">
+        <button onclick="sendData()" style="padding: 10px 20px;">Envoyer</button>
+    </div>
+</body>
+</html>
